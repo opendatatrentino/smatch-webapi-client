@@ -1,0 +1,53 @@
+/*******************************************************************************
+ * Copyright 2012-2013 University of Trento - Department of Information
+ * Engineering and Computer Science (DISI)
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Lesser General Public License
+ * (LGPL) version 2.1 which accompanies this distribution, and is available at
+ *
+ * http://www.gnu.org/licenses/lgpl-2.1.html
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ ******************************************************************************/ 
+
+/**
+ * WebApiException
+ *
+ * Version: 1.0
+ *
+ * Date: Jan 26, 2010
+ *
+ */
+package it.unitn.disi.smatch.webapi.client.exceptions;
+
+/**
+ * Exception wrapper for WebApiClient module
+ *
+ * @author Sergey Kanshin kanshin@disi.unitn.it
+ *
+ */
+public class WebApiException extends Exception {
+
+    private static final long serialVersionUID = 2125715957390954531L;
+
+    public WebApiException() {
+        super();
+    }
+
+    public WebApiException(Throwable e) {
+        super(e);
+    }
+
+    public WebApiException(String message) {
+        super(message);
+    }
+
+    public WebApiException(String message, Throwable e) {
+        super(message, e);
+    }
+}
