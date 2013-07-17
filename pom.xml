@@ -3,7 +3,7 @@
 
     <groupId>it.unitn.disi</groupId>
     <artifactId>smatch-webapi-client</artifactId>
-    <version>1.0.0</version>
+    <version>0.9.9</version>
     <packaging>jar</packaging>
 
     <name>smatch-webapi-client</name>
@@ -205,8 +205,8 @@
     </distributionManagement>
 
     <scm>
-        <connection>scm:svn:https://sweb.science.unitn.it/svn/sweb/development/OpenData/s-match/client</connection>
-        <developerConnection>scm:svn:https://sweb.science.unitn.it/svn/sweb/development/OpenData/s-match/client</developerConnection>
+        <connection>scm:git:git://github.com/opendatatrentino/smatch-webapi-client</connection>
+        <developerConnection>scm:git:git://github.com/opendatatrentino/smatch-webapi-client</developerConnection>
     </scm>
     
     <developers>
@@ -215,7 +215,31 @@
             <name>Moaz Reyad</name>
             <email>reyad@disi.unitn.it</email>
             <organization>DISI</organization>
-        </developer>     
+        </developer>
+        <developer>
+            <id>pravdin</id>
+            <name>Viktor Pravdin</name>
+            <email>pravdin@disi.unitn.it</email>
+            <organization>DISI</organization>
+        </developer>
+        <developer>
+            <id>marco</id>
+            <name>Marco Marasca</name>
+            <email>marasca@disi.unitn.it</email>
+            <organization>DISI</organization>
+        </developer>        
+        <developer>
+            <id>sergey</id>
+            <name>Sergey Kanshin</name>
+            <email>kanshinn@disi.unitn.it</email>
+            <organization>DISI</organization>
+        </developer>
+        <developer>
+            <id>vinay</id>
+            <name>Vinay Kumar</name>
+            <email>vkumar@disi.unitn.it</email>
+            <organization>DISI</organization>
+        </developer>      
     </developers>
-        
+    
 </project>
