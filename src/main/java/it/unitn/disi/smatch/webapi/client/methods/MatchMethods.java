@@ -24,10 +24,15 @@
 package it.unitn.disi.smatch.webapi.client.methods;
 
 import it.unitn.disi.smatch.webapi.client.exceptions.WebApiException;
+import it.unitn.disi.smatch.webapi.model.exceptions.UnknownRelationException;
 import it.unitn.disi.smatch.webapi.model.smatch.Context;
 import it.unitn.disi.smatch.webapi.model.smatch.Correspondence;
+import it.unitn.disi.smatch.webapi.model.smatch.CorrespondenceItem;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.httpclient.HttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -79,17 +84,38 @@ public class MatchMethods extends AbstractMethod {
             jRequest.put("parameters", jContexts);
 
             JSONObject jResponse = executePostMethod(jRequest, methodPath);
-            return match(jResponse);
+            return convert(jResponse);
         } catch (JSONException e) {
             throw new WebApiException(e);
         }
     }
 
-    protected Correspondence match(JSONObject jResponse) throws JSONException {
+    // Converts from JSON Correspondence to Java Correspondence
+    protected Correspondence convert(JSONObject jResponse) throws JSONException {
         Correspondence correspondence = null;
 
         if (jResponse.getJSONObject("response").has("Correspondence")) {
-            correspondence = new Correspondence(jResponse.getJSONObject("response"));
+
+            JSONObject jResponseItem = jResponse.getJSONObject("response");
+
+            JSONArray jcorrespondenceItems = jResponseItem.getJSONArray("Correspondence");
+            List<CorrespondenceItem> correspondenceItems = new ArrayList<CorrespondenceItem>();
+            for (int i = 0; i < jcorrespondenceItems.length(); i++) {
+                JSONObject jCorrespondenceItem = jcorrespondenceItems.getJSONObject(i);
+
+                String relation = jCorrespondenceItem.optString("Relation");
+                String source = jCorrespondenceItem.optString("Source");
+                String target = jCorrespondenceItem.optString("Target");
+                char cRelation = relation.charAt(0);
+                
+                try {
+                    correspondenceItems.add(new CorrespondenceItem(source, target, cRelation));
+                } catch (UnknownRelationException ex) {
+                    Logger.getLogger(MatchMethods.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            correspondence = new Correspondence(correspondenceItems);
 
         }
         return correspondence;

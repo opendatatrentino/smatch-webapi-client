@@ -66,7 +66,8 @@ public class TestWebApiClient {
         List<CorrespondenceItem> correspondenceItems = correspondence.getCorrespondenceItems();
 
         for (CorrespondenceItem item : correspondenceItems) {
-            String correspondenceLine = item.getSource() + "\t" + item.getRelation()
+            String correspondenceLine = item.getSource() + "\t" + 
+                    String.valueOf(item.getRelation())
                     + "\t" + item.getTarget();
 
             Logger.getLogger("Test Smatch").info(correspondenceLine);
