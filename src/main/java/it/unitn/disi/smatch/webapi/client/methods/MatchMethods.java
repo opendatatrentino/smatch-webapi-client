@@ -66,22 +66,8 @@ public class MatchMethods extends AbstractMethod {
 
         String methodPath = "/match";
         try {
-            Context sourceContext = new Context("SourceContext", sourceName, sourceNodes);
-            Context targetContext = new Context("TargetContext", targetName, targetNodes);
-
-            JSONObject jRequest = new JSONObject();
-            JSONObject jContexts = new JSONObject();
-            JSONArray jContextList = new JSONArray();
-
-            JSONObject jsourceContext = sourceContext.toJsonObject();
-            JSONObject jtargetContext = targetContext.toJsonObject();
-
-            jContextList.put(jsourceContext);
-            jContextList.put(jtargetContext);
-
-            jContexts.put("Contexts", jContextList);
-
-            jRequest.put("parameters", jContexts);
+            JSONObject jRequest = generateJSONRequest(sourceName, sourceNodes,
+                    targetName, targetNodes);
 
             JSONObject jResponse = executePostMethod(jRequest, methodPath);
             return convert(jResponse);
@@ -90,8 +76,47 @@ public class MatchMethods extends AbstractMethod {
         }
     }
 
-    // Converts from JSON Correspondence to Java Correspondence
-    protected Correspondence convert(JSONObject jResponse) throws JSONException {
+    /**
+     * Generates JSON request from input parameters
+     *
+     * @param sourceName - The name of the root node in the source tree
+     * @param sourceNodes - Names of the source nodes under the source root node
+     * @param targetName - The name of the root node in the target tree
+     * @param targetNodes -Names of the target nodes under the target root node
+     * @return JSON request to S-Match Web API Server
+     * @throws JSONException
+     */
+    public JSONObject generateJSONRequest(String sourceName, List<String> sourceNodes,
+            String targetName, List<String> targetNodes) throws JSONException {
+        
+        Context sourceContext = new Context("SourceContext", sourceName, sourceNodes);
+        Context targetContext = new Context("TargetContext", targetName, targetNodes);
+
+        JSONObject jRequest = new JSONObject();
+        JSONObject jContexts = new JSONObject();
+        JSONArray jContextList = new JSONArray();
+
+        JSONObject jsourceContext = sourceContext.toJsonObject();
+        JSONObject jtargetContext = targetContext.toJsonObject();
+
+        jContextList.put(jsourceContext);
+        jContextList.put(jtargetContext);
+
+        jContexts.put("Contexts", jContextList);
+
+        jRequest.put("parameters", jContexts);
+
+        return jRequest;
+    }
+
+     /**
+     * Converts from JSON Correspondence to Java Correspondence
+     *
+     * @param jResponse The JSON response with Correspondence
+     * @return the Correspondence Java object
+     * @throws JSONException
+     */
+    public Correspondence convert(JSONObject jResponse) throws JSONException {
         Correspondence correspondence = null;
 
         if (jResponse.getJSONObject("response").has("Correspondence")) {

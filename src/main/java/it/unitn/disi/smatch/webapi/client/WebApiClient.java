@@ -29,7 +29,6 @@ package it.unitn.disi.smatch.webapi.client;
 import it.unitn.disi.smatch.webapi.client.exceptions.WebApiException;
 import it.unitn.disi.smatch.webapi.model.Configuration;
 import it.unitn.disi.smatch.webapi.client.methods.MatchMethods;
-import it.unitn.disi.smatch.webapi.client.methods.PingMethod;
 import it.unitn.disi.smatch.webapi.model.smatch.Correspondence;
 import java.util.List;
 import java.util.Locale;
@@ -122,16 +121,6 @@ public class WebApiClient implements IApiClient {
             webApiClient = new WebApiClient(locale, host, "" + port);
         }
         return webApiClient;
-    }
-
-    /**
-     * Test for connection with web API server
-     *
-     * @return true if connection is successful and false if otherwise
-     */
-    public boolean ping() {
-        PingMethod method = new PingMethod(httpClient, host, port);
-        return method.ping();
     }
 
     /**

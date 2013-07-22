@@ -38,8 +38,8 @@ public class AllTests extends TestSuite {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTestSuite(TestPing.class);
-        suite.addTestSuite(TestMatch.class);
+        suite.addTestSuite(TestGenerateJSON.class);
+        suite.addTestSuite(TestParseJSON.class);
         return suite;
     }
 }
