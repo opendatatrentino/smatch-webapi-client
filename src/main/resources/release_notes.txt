@@ -1,0 +1,48 @@
+= Release Notes: Name of the Module. version 1.0.0 =
+
+Date of the release: 2013/07/25 14:52:09
+
+Design Lead: Moaz Reyad
+
+Developer Lead: Moaz Reyad
+
+= Description =
+This module provides the client for the S-Match Web API.
+
+== Goal of the module ==
+The goal of this module is to be used as a Java client to access the S-Match Web API services. 
+
+It interacts with the S-Match Web server through an HTTP API. The data model which is used while interacting with the server is given by the the S-Match Web model.
+
+
+= Documentation = 
+JavaDocs: https://sweb.science.unitn.it/javadocs/smatch-webapi-client/1.0.0
+
+
+Manual: https://sweb.science.unitn.it/trac/sweb/wiki/Manuals/smatch-webapi-client/1.0.0
+
+= Requirements = 
+Requires Java and Maven.
+Depends on SMatch-WebAPI-Model.
+
+= Installation and configuration = 
+Installed using usual Maven build commands.
+
+Can be installed using usual Maven build commands.
+
+Configuration:
+The default configuration for the S-Match server is localhost:9090. This must be changed if the S-Match server is hosted in another server or uses another port.
+
+= Known issues =
+
+
+
+= Past releases =
+Pointer to the past release notes pages.
+
+https://sweb.science.unitn.it/trac/sweb/wiki/ReleaseNotes/smatch-webapi-client
+
+= License =
+All the content of this project is copyrighted by the Knowdive group and should be deemed as confidential and not circulated without the written permission of Prof. Fausto Giunchiglia
+
+This module is released under LGPL license.
