@@ -29,8 +29,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- *
- * @author Moaz
+ * @author Moaz Reyad <reyad@disi.unitn.it>
+ * @date Jul 11, 2013
  */
 public class TestGenerateJSON extends TestCase {
 
