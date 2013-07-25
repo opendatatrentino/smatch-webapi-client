@@ -53,8 +53,8 @@ public class WebApiClient implements IApiClient {
     private HttpClient httpClient;
     private Locale locale;
     private String serverPath;
-    private String host;
-    private String port;
+    protected String host;
+    protected String port;
     private static final int MILLISECONDS = 1000;
 
     protected WebApiClient(Locale locale, String host, String port) {
