@@ -53,9 +53,17 @@ public class WebApiClient implements IApiClient {
     private HttpClient httpClient;
     private Locale locale;
     private String serverPath;
-    protected String host;
-    protected String port;
+    private String host;
+    private String port;
     private static final int MILLISECONDS = 1000;
+
+    protected String getHost() {
+        return host;
+    }
+
+    protected String getPort() {
+        return port;
+    }
 
     protected WebApiClient(Locale locale, String host, String port) {
         MultiThreadedHttpConnectionManager mgr =
