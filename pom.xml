@@ -3,7 +3,7 @@
 
     <groupId>it.unitn.disi</groupId>
     <artifactId>smatch-webapi-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -26,9 +26,47 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jettyVersion>9.0.2.v20130417</jettyVersion>
     </properties>
 
+    <!-- Search for maven plugins also on sweb-internal repository -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>sweb-internal</id>
+            <layout>default</layout>
+            <name>Archiva Managed Internal Repository</name>
+            <url>https://sweb.science.unitn.it/archiva/repository/internal</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>sweb-snapshots</id>
+            <name>Archiva Managed Snapshot Repository</name>
+            <url>https://sweb.science.unitn.it/archiva/repository/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
+        <extensions>
+            <!-- Allows uploading browsable javadocs to remote server -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>1.0-beta-7</version>
+            </extension>
+        </extensions>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -100,35 +138,6 @@
         </dependency>
     </dependencies>
     
-    <!-- Repositories definition -->
-    <repositories>
-        <repository>
-            <id>sweb-internal</id>
-            <layout>default</layout>
-            <name>Archiva Managed Internal Repository</name>
-            <url>https://sweb.science.unitn.it/archiva/repository/internal</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>sweb-snapshots</id>
-            <name>Archiva Managed Snapshot Repository</name>
-            <url>https://sweb.science.unitn.it/archiva/repository/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <scm>
         <url>git@github.com:opendatatrentino/smatch-webapi-client.git</url>
         <connection>scm:git:git://github.com/opendatatrentino/smatch-webapi-client</connection>
